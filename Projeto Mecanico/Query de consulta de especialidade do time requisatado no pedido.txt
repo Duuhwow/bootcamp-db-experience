@@ -1,0 +1,11 @@
+select * from Mechanic;
+
+select m.Specialty, t.IdMechanic_Team, o.IdOrder
+	from Mechanic m INNER JOIN Mechanic_Team t
+    on m.IdMechanic = t.IdMechanic
+    INNER JOIN Orders o
+    on t.IdMechanic_Team = o.IdMechanicTeam_Order
+    order by t.IdMechanic_Team;
+    
+Select distinct count(*) as Pedidos, IdClient from Orders, Clients
+	where Description_Order = 'motor';

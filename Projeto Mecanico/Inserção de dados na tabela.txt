@@ -1,0 +1,66 @@
+Insert into Clients (CPF, Contat)
+		Values (856978452, 985462-6587),
+			   (621459782, 965325-6658),
+               (697784135, 963244-3332),
+               (987878531, 932365-4472);
+	
+
+-- Insert Mecânico
+Insert into Mechanic (Code_Mechanic,  Specialty)
+		Values (35624, 'motor'),
+			   (02568, 'freios'),
+               (35568, 'direção'),
+               (15425, 'motor');
+
+
+Insert into Person (Complet_Name,  Address, IdMechanic_Person, IdClient_Person)
+		Values ('Eduardo Rocha', 'Rua Paineiras 168, Bairro Baeta, São Paulo-SP', 1, 1),
+			   ('Alexandre ramos', 'Rua marcola 612, Bairro Ludovico, São Bernardo do campo-SP', 2, 2),
+               ('Marcio Alcantara', 'Rua Brecheret 322, Bairro Centro, São  Luiz-SP', 3, 1),
+               ('Morgan Freman', 'Rua Los Angeles 100, Bairro Centro, Boston-SP', 4, 3);
+		
+
+Insert into Mechanic_Team (IdMechanic)
+		Values (1),
+			(2),
+            (3),
+            (4);
+
+
+Insert into Orders (Description_Order, Data_Order, IdMechanicTeam_Order, IdClient_Order)
+		Values ('motor', '2022-08-20', 1, 1),
+			('freios', '2022-08-30', 2, 2),
+            ('direção', '2022-09-02', 3, 3),
+            ('motor', '2022-09-20', 4, 4);
+            
+ Insert into Orders (Description_Order, Data_Order, IdMechanicTeam_Order, IdClient_Order)
+		Values ('motor', '2022-08-05', 1, 1),
+			('freios', '2022-08-15', 2, 2),
+            ('direção', '2022-09-10', 3, 3),
+            ('motor', '2022-09-06', 4, 4);           
+        
+        
+create table Orders(
+	IdOrder INT auto_increment primary key,
+    Description_Order VARCHAR(45) not null,
+    Data_Order DATE not null,
+    IdMechanicTeam_Order INT,
+    IdClient_Order INT,
+    constraint fk_MechanicTeam_Order Foreign key (IdMechanicTeam_Order) references Mechanic(IdMechanic),
+    constraint fk_Client_Order Foreign key ( IdClient_Order) references Clients(IdClient)
+);
+
+
+create table Orders_Service(
+	IdOrder_Service INT auto_increment primary key,
+    Number_Order INT not null,
+    IssueDate_Order DATE not null,
+    FinishDate_Order DATE not null,
+    Status_Order ENUM('Processando', 'Em andamento', 'Entregue') default 'Processando',
+    IdOrder_OrdersService INT,
+    IdClient_OrdersService INT,
+    IdMechanicTeam_OrdersService INT, 
+    constraint fk_Order_OrdersService Foreign key (IdOrder_OrdersService) references Orders(IdOrder),
+    constraint fk_MechanicTeam_OrdersService Foreign key (IdMechanicTeam_OrdersService) references Mechanic(IdMechanic),
+    constraint fk_Client_OrdersService Foreign key ( IdClient_OrdersService) references Clients(IdClient)
+    );

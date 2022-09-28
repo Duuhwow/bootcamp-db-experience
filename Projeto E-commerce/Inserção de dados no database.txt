@@ -1,0 +1,153 @@
+use ecommerce;
+
+
+Insert into Physical_person (Complet_name, CPF)
+		Values ('Eduardo Rocha', 132568598),
+			   ('Luiz Santos', 365247859),
+               ('Rariel Damacena', 698587854),
+               ('Rick Sanchess', 222546985),
+               ('Morgan Freman', 696969854),
+               ('Lisbela Ohana', 458885475),
+               ('Claudio Obraian', 665859854);
+
+
+Insert into Legal_person (Social_name, Fantasy_name, CNPJ)
+		Values ('Murilo Eletrônica Ltda', 'MR Eletrônica', 25558965874585),
+			('Santos Eletrônica Ltda', 'ST Eletrônica', 55563254785412),
+            ('Carlos Eletrônica Ltda', 'CL Eletrônica', 33365254158885),
+            ('Osvaldo letrônica Ltda', 'OV Eletrônica', 00021352458742),
+            ('Silvestre Eletrônica Ltda', 'SV Eletrônica', 66635985214574),
+            ('Lorena Eletrônica Ltda', 'LR Eletrônica', 69858585474742),
+            ('Morgam Eletrônica Ltda', 'MG Eletrônica', 22214523666985);
+
+
+Insert into Client_Type (IdPhysicalPerson_Type, IdLegalPerson_Type, IdType_Client)
+		Values (1, 1, 1),
+			(2, 2, 2),
+            (3, 3, 3),
+            (4, 4, 4),
+            (5, 5, 5),
+            (6, 6, 6),
+            (7, 7, 7);
+            
+
+Insert into Clients (Address)
+		Values ('Rua Carijos 36, Bairro Louva, São Paulo-PR'),
+			('Rua Loura 124, Bairro Vilamo, Rio Grande-SP'),
+            ('Rua Maraia 556, Bairro Orlando, Gramada-SP'),
+            ('Rua Junio 889, Bairro Carla, Baeta-SP'),
+            ('Rua Balsamo 78, Bairro Osvaldo, Silvina-SP'),
+            ('Rua Ovelha 888, Bairro Centro, Batistini-SP'),
+            ('Rua Carlota 54, Bairro Centro, Contios-SP');
+                
+
+
+
+Insert into Credit_card (identification, Credit_number, Expiration_date, IdCreditClient)
+		Values ('Eduardo Rocha',333564887988458, '2025-05-03', 1),
+			   ('Luiz Santos', 365874968512547, '2026-06-12', 2),
+               ('Rariel Damacena', 658958745858741, '2023-08-14', 3),
+               ('Rick Sanches', 125454785469852, '2030-10-02', 4),
+               ('Morgan Freman', 125648569854785, '2026-05-06', 5),
+               ('Lisbela Ohana', 658989896563254, '2027-11-05', 6),
+               ('Claudio Obraian', 123658596587485, '2026-05-025', 5),
+               ('Lemos Clara', 254547895698565, '2027-10-30', 6),
+               ('Clarice Lispector', 365636598887458, '2024-12-24', 7);
+
+
+Insert into Orders (Status_Order, Description_Order, freight, IdOrder_Client, IdOrder_Delivery, IdOrder_FormPayment)
+		Values ('Em andamento', 'SSD Kingston', 45, 1, 1, 1),
+			('Processando', 'Water Cooler', 45, 2, 2, 1),
+            ('Entregue', 'Teclado Mecanico', 45, 3, 3, 1),
+            ('Entregue', 'SSD Kingston', 45, 4, 4, 1),
+            ('Enviado', 'Headset HyperX', 45, 5, 5, 1),
+            ('Em andamento', 'Teclado Mecanico', 45, 6, 6, 1),
+            ('Enviado', 'SSD Kingston', 45, 7, 7, 1);
+       
+Insert into Status_Order  ('Processando', 'Em andamento', 'Enviado', 'Entregue') 
+        Description_Order VARCHAR(45),
+        freight FLOAT,
+        IdOrder_Client INT,
+        IdOrder_Delivery INT,
+        IdOrder_FormPayment
+
+
+Insert into Delivery (Status_delivery, Tracking_code)
+		Values ('Em andamento', 325648),
+			('Processando', 4528756),
+            ('Entregue', 4585685),
+            ('Entregue', 1123544),
+            ('Entregue', 1233215),
+            ('Entregue', 1547854),
+            ('Enviado', 1254568);
+
+
+Insert into Form_payment (Credit_Card, PIX, Boleto)
+		Values (1985149283340134439, 123456, 7534201);
+        
+
+
+insert into Product (Category, Description_Product, Value_Product)
+		Values ('Eletronico', 'SSD Kingston', 5500),
+			('Eletronico', 'Headset HyperX', 7300),
+            ('Eletronico', 'Water Cooler', 2400),
+            ('Eletronico', 'Teclado Mecanico', 670);
+
+
+insert into Product_Order (IdProduct_ProductOrder, IdOrder_ProductOrder, Quantity)
+		Values (1, 1, 3),
+			(2, 2, 1),
+            (3, 3, 2),
+            (3, 4, 1),
+            (2, 5, 3),
+            (4, 6, 3),
+            (4, 7, 5);
+
+select * from Orders;
+
+
+insert into Stock (place)
+		Values ('São Paulo-PR'),
+			('São Bernardo do Campo-SP'),
+			('Santo André-SP');
+            
+
+insert into Product_Stock (IdProductStock_Stock, IdProductStock_Product, Quantity_ProductStock, Status_ProductStock)
+		Values (1, 1, 50, 'Em estoque'),
+			(1, 2, 50, 'Em estoque'),
+            (2, 3, 50, 'Em estoque'),
+            (3, 4, 0, 'Sem estoque');
+
+
+insert into Third_seller (SocialName_Seller, CNPJ_Seller, Address_Seller, FantasyName_Seller)
+		Values ('CHL Eletronico Ltda', 2564525879654, 'Rua Maju 888, Rio Grande, São Paulo-SP', 'CHL Eletronico'),
+			('KLK Eletronico Ltda', 33325698745454, 'Rua Lambda 854, Centro, São Paulo-SP', 'KLK Eletronico'),
+            ('MLV Contabilidade Ltda', 22215474585696, 'Rua Cornelios 458, Centro, São Paulo-SP', 'MLV Contabilidade'),
+            ('MK Galpão Ltda', 33658966652111, 'Rua Baby 456, Centro, São Paulo-SP', 'MK Galpão');
+	
+
+insert into Product_Seller (IdTrirdSeller_ProductSeller, IdProduct_ProductSeller, Quantity)
+		Values (1, 1, 55),
+			(2, 2, 73),
+            (3, 3, 24),
+            (4, 3, 67);
+
+
+insert into Provider (SocialName_Provider, CNPJ_Provider, Address_Provider, FantasyName_Provider)
+		Values ('YU Informática Ltda', 28836122000131, 'Rua Gaspar 444, Centro, São Paulo-SP', 'YU Informática'),
+			('LL  Informática Ltda', 45027808000109, 'Rua Lula 133, Centro, São Paulo-SP', 'LL  Informática'),
+            ('KIO  Informática Ltda', 59195571000171, 'Rua Chama 666, Centro, São Paulo-SP', 'KIO  Informática'),
+            ('IORI  Informática Ltda', 67866131000127, 'Rua Cladionor 238, Centro, São Paulo-SP', 'IORI  Informática');
+            
+
+insert into Product_Available (IdProvider_ProducAvailable, IdProduct_ProducAvailable)
+		Values (5, 1),
+			(6, 2),
+            (7, 3),
+            (8, 4);
+            
+select * from Product_Available;
+
+    
+        
+	
